@@ -11,10 +11,15 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="flex items-center justify-between bg-white shadow-lg px-4 py-2">
+    <div className="sticky top-0 z-10 flex items-center justify-between bg-white shadow-lg px-4 py-2">
       {/* Hamburger Menu */}
       <div className="flex items-center space-x-4">
-        <img onClick={() => toggleMenuHandler()}  className="w-8 cursor-pointer" src={hamburgerMenu} alt="Menu" />
+        <img
+          onClick={() => toggleMenuHandler()}
+          className="w-8 cursor-pointer"
+          src={hamburgerMenu}
+          alt="Menu"
+        />
 
         {/* Logo */}
         <div className="flex items-center space-x-2">
