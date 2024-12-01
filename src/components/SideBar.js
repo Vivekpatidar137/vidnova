@@ -15,7 +15,7 @@ const SideBar = () => {
 
   return (
     toggleMenu && (
-      <div className="col-span-1 bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto border border-gray-200">
+      <div className="col-span-1 bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto border border-gray-200 sticky top-14">
         <div>
           {/* User Profile Section */}
           <div className="flex items-center space-x-4 p-3 mb-4 bg-gray-100 rounded-md">

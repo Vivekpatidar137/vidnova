@@ -26,7 +26,7 @@ const ButtonList = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="sticky top-14 bg-white z-10 p-4 shadow-md overflow-x-auto whitespace-nowrap scrollbar-hide">
       {buttonNames.map((button, index) => (
         <Buttons key={index} name={button} />
       ))}
