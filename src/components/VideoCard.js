@@ -3,6 +3,13 @@ const VideoCard = ({ info }) => {
   const { channelTitle, thumbnails, title } = snippet;
   const { viewCount } = statistics;
 
+  const formatViews = (views) => {
+    if (views >= 1e9) return (views / 1e9).toFixed(1) + "B";
+    if (views >= 1e6) return (views / 1e6).toFixed(1) + "M";
+    if (views >= 1e3) return (views / 1e3).toFixed(1) + "K";
+    return views;
+  };
+
   return (
     <div className="flex flex-col w-80 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 m-4">
       <img
@@ -23,7 +30,9 @@ const VideoCard = ({ info }) => {
             {title}
           </h1>
           <p className="text-sm text-gray-500 mt-1">{channelTitle}</p>
-          <p className="text-sm text-gray-500">{viewCount} views</p>
+          <p className="text-sm text-gray-500">
+            {formatViews(viewCount)} views
+          </p>
         </div>
       </div>
     </div>
