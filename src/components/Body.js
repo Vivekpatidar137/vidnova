@@ -1,10 +1,10 @@
 import React from "react";
-import MainContainer from "./MainContainer";
+import { Outlet } from "react-router-dom";
 
 const Body = () => {
   return (
     <div>
-      <MainContainer />
+      <Outlet />
     </div>
   );
 };
