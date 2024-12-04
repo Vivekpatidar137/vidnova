@@ -9,7 +9,11 @@ const WatchPage = () => {
       <iframe
         width="1200"
         height="600"
-        src={"https://www.youtube.com/embed/" + searchParam.get("v")}
+        src={
+          "https://www.youtube.com/embed/" +
+          searchParam.get("v") +
+          "?autoplay=1"
+        }
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
