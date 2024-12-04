@@ -3,9 +3,9 @@ import { useSearchParams } from "react-router-dom";
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
-  console.log(searchParam.get("v"));
+
   return (
-    <div className="p-2 m-2">
+    <div className="p-2 m-2 absolute">
       <iframe
         width="1200"
         height="600"
