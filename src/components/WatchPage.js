@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { closeMenu } from "../utils/appSlice";
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(closeMenu());
+  }, []);
   return (
     <div className="p-2 m-2 absolute">
       <iframe
