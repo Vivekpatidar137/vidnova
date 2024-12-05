@@ -10,6 +10,7 @@ import {
   FaUserAlt,
 } from "react-icons/fa";
 import { GiSpaceShuttle } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const toggleMenu = useSelector((store) => store.app.isMenuOpen);
@@ -31,10 +32,12 @@ const SideBar = () => {
 
           {/* Home Section */}
           <ul className="mb-4 space-y-2">
-            <li className="flex items-center space-x-2 hover:text-red-500 cursor-pointer">
-              <FaHome className="text-gray-500" />
-              <span>Home</span>
-            </li>
+            <Link to={"/"}>
+              <li className="flex items-center space-x-2 hover:text-red-500 cursor-pointer">
+                <FaHome className="text-gray-500" />
+                <span>Home</span>
+              </li>
+            </Link>
           </ul>
 
           {/* Subscriptions Section */}
