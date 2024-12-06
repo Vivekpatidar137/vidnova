@@ -3,6 +3,7 @@ import VideoCard from "./VideoCard";
 import { API_KEY, YouTUBE_URL } from "../utils/constant";
 import ButtonList from "./ButtonList";
 import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
@@ -26,7 +27,7 @@ const VideoContainer = () => {
     <div className="col-span-11">
       <ButtonList />
       {!videos.length ? (
-        <p className="text-center text-gray-500 mt-4">Loading videos...</p>
+        <Shimmer />
       ) : (
         <div className="flex flex-wrap">
           {videos.map((video) => (
