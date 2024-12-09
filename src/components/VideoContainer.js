@@ -24,7 +24,7 @@ const VideoContainer = () => {
     getVideos();
   }, []);
   return (
-    <div className="col-span-11">
+    <div className="col-span-11 w-full max-w-screen overflow-hidden">
       <ButtonList />
       {!videos.length ? (
         <Shimmer />
