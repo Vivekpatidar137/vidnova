@@ -11,7 +11,7 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="sticky top-0 z-10 flex items-center justify-between bg-white shadow-lg px-4 py-2">
+    <div className="sticky top-0 z-50 flex items-center justify-between bg-white shadow-lg px-4 py-2">
       {/* Hamburger Menu */}
       <div className="flex items-center space-x-4">
         <img
