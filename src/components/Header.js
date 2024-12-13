@@ -1,13 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import hamburgerMenu from "../assets/menu.png";
 import youtubeLogo from "../assets/youtube.png";
 import userIcon from "../assets/user.png";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { YOUTUBE_SEARCH_API } from "../utils/constant";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [showSearchInput, setShowSearchInput] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+
+  const handleSuggestions = async () => {
+    try {
+      if (!searchQuery) return;
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const json = await data.json();
+
+      setSearchSuggestions(json[1] || []);
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleSuggestions();
+    }, 200); // Debounce to prevent API overload
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -46,6 +68,10 @@ const Header = () => {
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
@@ -82,6 +108,10 @@ const Header = () => {
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
