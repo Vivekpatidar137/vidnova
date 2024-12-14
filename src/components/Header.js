@@ -140,6 +140,22 @@ const Header = () => {
               </button>
             </form>
           )}
+
+          {/* Search Suggestions */}
+          <div className="relative w-full max-w-lg mx-auto pt-1">
+            {searchSuggestions.length > 0 && (
+              <ul className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 w-full px-4 py-2">
+                {searchSuggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         {!showSearchInput && (
