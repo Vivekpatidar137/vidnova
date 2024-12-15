@@ -11,6 +11,7 @@ const Header = () => {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleSuggestions = async () => {
     try {
@@ -68,6 +69,8 @@ const Header = () => {
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Search"
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setShowSuggestions(false)}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -108,6 +111,8 @@ const Header = () => {
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Search"
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setShowSuggestions(false)}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -143,7 +148,7 @@ const Header = () => {
 
           {/* Search Suggestions */}
           <div className="relative w-full max-w-lg mx-auto pt-1">
-            {searchSuggestions.length > 0 && (
+            {searchSuggestions.length > 0 && showSuggestions && (
               <ul className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 w-full px-4 py-2">
                 {searchSuggestions.map((suggestion, index) => (
                   <li
