@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import hamburgerMenu from "../assets/menu.png";
 import youtubeLogo from "../assets/youtube.png";
 import userIcon from "../assets/user.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
+import { addSuggestions } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -13,13 +14,20 @@ const Header = () => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleSuggestions = async () => {
+  const searchCache = useSelector((store) => store.search);
+
+  const getSearchSuggestions = async () => {
     try {
       if (!searchQuery) return;
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const json = await data.json();
 
       setSearchSuggestions(json[1] || []);
+      dispatch(
+        addSuggestions({
+          [searchQuery]: json[1] || [],
+        })
+      );
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
@@ -27,7 +35,11 @@ const Header = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      handleSuggestions();
+      if (searchCache[searchQuery]) {
+        setSearchSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
     }, 200); // Debounce to prevent API overload
     return () => clearTimeout(timer);
   }, [searchQuery]);
