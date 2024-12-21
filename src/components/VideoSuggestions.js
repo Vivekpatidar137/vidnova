@@ -29,7 +29,7 @@ const VideoSuggestions = ({ videoId }) => {
   return (
     <div className="flex flex-col gap-4">
       {suggestions.map((video) => (
-        <VideoCard key={video.id.videoId} info={video} />
+        <VideoCard key={video.id.videoId} info={video} layout="horizontal" />
       ))}
     </div>
   );
