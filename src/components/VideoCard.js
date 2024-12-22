@@ -13,22 +13,22 @@ const VideoCard = ({ info, layout }) => {
 
   if (layout === "horizontal") {
     return (
-      <div className="flex items-center w-full bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-2">
+      <div className="flex items-center w-full bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-4">
         {thumbnails?.medium?.url && (
           <img
-            className="w-28 h-20 rounded object-cover flex-shrink-0"
+            className="w-36 h-24 rounded-lg object-cover flex-shrink-0"
             src={thumbnails.medium.url}
             alt="Video Thumbnail"
           />
         )}
-        <div className="ml-4 flex-grow">
-          <h1 className="text-sm font-semibold text-gray-900 line-clamp-2">
+        <div className="ml-6 flex-grow">
+          <h1 className="text-lg font-semibold text-gray-900 line-clamp-2">
             {title || "No title available"}
           </h1>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-sm text-gray-600 mt-2">
             {channelTitle || "No channel info"}
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-sm text-gray-500 mt-1">
             {formatViews(viewCount)} views
           </p>
         </div>
