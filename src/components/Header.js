@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { addSuggestions } from "../utils/searchSlice";
+import SearchFetcher from "./SearchFetcher";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-
+  const [showSearch, setShowSearch] = useState(false);
   const searchCache = useSelector((store) => store.search);
 
   const getSearchSuggestions = async () => {
@@ -43,6 +44,10 @@ const Header = () => {
     }, 200); // Debounce to prevent API overload
     return () => clearTimeout(timer);
   }, [searchQuery]);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) setShowSearch(true);
+  };
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -76,7 +81,10 @@ const Header = () => {
         <div className="flex-grow mx-4 max-w-lg">
           {/* Always show search input on md and larger screens */}
           {showSearchInput || (
-            <form className="hidden md:flex items-center flex-grow">
+            <form
+              className="hidden md:flex items-center flex-grow"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 type="text"
@@ -91,6 +99,7 @@ const Header = () => {
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
                 type="submit"
+                onClick={() => handleSearch()}
               >
                 Search
               </button>
@@ -118,7 +127,10 @@ const Header = () => {
               </svg>
             </button>
           ) : (
-            <form className="flex items-center flex-grow">
+            <form
+              className="flex items-center flex-grow"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
                 className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 type="text"
@@ -133,6 +145,7 @@ const Header = () => {
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
                 type="submit"
+                onClick={() => handleSearch()}
               >
                 Search
               </button>
@@ -183,6 +196,7 @@ const Header = () => {
           />
         )}
       </div>
+      {showSearch && <SearchFetcher searchQuery={searchQuery} />}
     </div>
   );
 };
