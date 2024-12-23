@@ -7,4 +7,7 @@ export const YOUTUBE_SEARCH_API =
 export const VIDEO_SUGGESTIONS =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=";
 
+export const SEARCH_LIST =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";
+
 export const API_KEY = process.env.REACT_APP_API_KEY;
