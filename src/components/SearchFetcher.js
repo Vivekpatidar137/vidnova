@@ -13,7 +13,6 @@ const SearchFetcher = ({ searchQuery }) => {
       );
       const data = await response.json();
       dispatch(addSearchList(data.items || []));
-      console.log(data);
     } catch (error) {
       console.error("Error fetching search results:", error);
     }

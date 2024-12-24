@@ -4,8 +4,11 @@ import { API_KEY, YouTUBE_URL } from "../utils/constant";
 import ButtonList from "./ButtonList";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
+  const searchResults = useSelector((state) => state.search.searchResults);
+
   const [videos, setVideos] = useState([]);
   const getVideos = async () => {
     try {
@@ -23,15 +26,21 @@ const VideoContainer = () => {
   useEffect(() => {
     getVideos();
   }, []);
+
+  const videoData = searchResults.length > 0 ? searchResults : videos;
+
   return (
     <div className="col-span-11 w-full max-w-screen overflow-hidden">
       <ButtonList />
-      {!videos.length ? (
+      {!videoData.length ? (
         <Shimmer />
       ) : (
         <div className="flex flex-wrap">
-          {videos.map((video) => (
-            <Link to={"/watch?v=" + video.id} key={video.id}>
+          {videoData.map((video) => (
+            <Link
+              to={"/watch?v=" + (video.id?.videoId || video.id)}
+              key={video.id?.videoId || video.id}
+            >
               <VideoCard info={video} />
             </Link>
           ))}
