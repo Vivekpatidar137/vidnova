@@ -3,8 +3,9 @@ import { API_KEY, SEARCH_LIST } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addSearchList } from "../utils/searchSlice";
 
-const SearchFetcher = ({ searchQuery }) => {
+const SearchFetcher = ({ searchQuery, onSearchComplete }) => {
   const dispatch = useDispatch();
+
   const getSearchResults = async () => {
     if (!searchQuery) return;
     try {
@@ -13,6 +14,7 @@ const SearchFetcher = ({ searchQuery }) => {
       );
       const data = await response.json();
       dispatch(addSearchList(data.items || []));
+      if (onSearchComplete) onSearchComplete(); // Reset the query
     } catch (error) {
       console.error("Error fetching search results:", error);
     }

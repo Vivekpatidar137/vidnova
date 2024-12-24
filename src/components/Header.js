@@ -49,6 +49,10 @@ const Header = () => {
     if (searchQuery.trim()) setShowSearch(true);
   };
 
+  const handleSearchComplete = () => {
+    setSearchQuery("");
+  };
+
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -196,7 +200,12 @@ const Header = () => {
           />
         )}
       </div>
-      {showSearch && <SearchFetcher searchQuery={searchQuery} />}
+      {showSearch && (
+        <SearchFetcher
+          searchQuery={searchQuery}
+          onSearchComplete={handleSearchComplete}
+        />
+      )}
     </div>
   );
 };
