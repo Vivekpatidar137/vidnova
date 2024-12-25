@@ -4,7 +4,6 @@ const VideoCard = ({ info, layout }) => {
   const { viewCount } = statistics || {}; // Safely destructure viewCount
 
   const formatViews = (views) => {
-    if (!views) return "N/A"; // Handle cases where viewCount is not available
     if (views >= 1e9) return (views / 1e9).toFixed(1) + "B";
     if (views >= 1e6) return (views / 1e6).toFixed(1) + "M";
     if (views >= 1e3) return (views / 1e3).toFixed(1) + "K";
@@ -28,9 +27,11 @@ const VideoCard = ({ info, layout }) => {
           <p className="text-sm text-gray-600 mt-2">
             {channelTitle || "No channel info"}
           </p>
-          <p className="text-sm text-gray-500 mt-1">
-            {formatViews(viewCount)} views
-          </p>
+          {viewCount && (
+            <p className="text-sm text-gray-500 mt-1">
+              {formatViews(viewCount)} views
+            </p>
+          )}
         </div>
       </div>
     );
@@ -56,9 +57,11 @@ const VideoCard = ({ info, layout }) => {
           <p className="text-sm text-gray-500 mt-1">
             {channelTitle || "No channel info"}
           </p>
-          <p className="text-sm text-gray-500">
-            {formatViews(viewCount)} views
-          </p>
+          {viewCount && (
+            <p className="text-sm text-gray-500">
+              {formatViews(viewCount)} views
+            </p>
+          )}
         </div>
       </div>
     </div>
