@@ -1,6 +1,7 @@
 const VideoCard = ({ info, layout }) => {
   const { snippet, statistics } = info;
-  const { channelTitle, thumbnails, title } = snippet || {};
+  const { channelTitle, thumbnails, title, liveBroadcastContent } =
+    snippet || {};
   const { viewCount } = statistics || {}; // Safely destructure viewCount
 
   const formatViews = (views) => {
@@ -9,6 +10,9 @@ const VideoCard = ({ info, layout }) => {
     if (views >= 1e3) return (views / 1e3).toFixed(1) + "K";
     return views;
   };
+
+  // Check if the video is live based on the broadcast content
+  const isVideoLive = liveBroadcastContent === "live";
 
   if (layout === "horizontal") {
     return (
@@ -31,6 +35,21 @@ const VideoCard = ({ info, layout }) => {
             <p className="text-sm text-gray-500 mt-1">
               {formatViews(viewCount)} views
             </p>
+          )}
+          {isVideoLive && (
+            <div className="flex items-center bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full mt-2 w-fit shadow-lg ml-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 mr-2 animate-pulse"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <circle cx="12" cy="12" r="10" fill="red" />
+                <circle cx="12" cy="12" r="6" fill="white" />
+                <circle cx="12" cy="12" r="4" fill="red" />
+              </svg>
+              LIVE
+            </div>
           )}
         </div>
       </div>
@@ -61,6 +80,22 @@ const VideoCard = ({ info, layout }) => {
             <p className="text-sm text-gray-500">
               {formatViews(viewCount)} views
             </p>
+          )}
+
+          {isVideoLive && (
+            <div className="flex bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full mt-2 w-fit shadow-lg -ml-14">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 mr-2 animate-pulse"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <circle cx="12" cy="12" r="10" fill="red" />
+                <circle cx="12" cy="12" r="6" fill="white" />
+                <circle cx="12" cy="12" r="4" fill="red" />
+              </svg>
+              LIVE
+            </div>
           )}
         </div>
       </div>
