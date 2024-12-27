@@ -12,8 +12,12 @@ const searchSlice = createSlice({
     addSearchList: (state, action) => {
       state.searchResults = action.payload || [];
     },
+    addButtonValue: (state, action) => {
+      state.searchResults = action.payload || [];
+    },
   },
 });
 
-export const { addSuggestions, addSearchList } = searchSlice.actions;
+export const { addSuggestions, addSearchList, addButtonValue } =
+  searchSlice.actions;
 export default searchSlice.reducer;
