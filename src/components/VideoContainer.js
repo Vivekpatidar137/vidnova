@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
   const searchResults = useSelector((state) => state.search.searchResults);
+  const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
 
   const [videos, setVideos] = useState([]);
   const getVideos = async () => {
@@ -35,11 +36,18 @@ const VideoContainer = () => {
       {!videoData.length ? (
         <Shimmer />
       ) : (
-        <div className="flex flex-wrap">
+        <div
+          className={`grid gap-4 ${
+            isMenuOpen
+              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
+              : "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5"
+          }`}
+        >
           {videoData.map((video) => (
             <Link
               to={"/watch?v=" + (video.id?.videoId || video.id)}
               key={video.id?.videoId || video.id}
+              className="min-w-0"
             >
               <VideoCard info={video} />
             </Link>
