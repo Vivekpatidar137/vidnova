@@ -57,36 +57,36 @@ const VideoCard = ({ info, layout }) => {
   }
 
   return (
-    <div className="flex flex-col w-80 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 m-4">
+    <div className="flex flex-col w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 m-3 sm:m-4">
       {thumbnails?.high?.url && (
         <img
-          className="w-full h-48 rounded-t-lg object-cover"
+          className="w-full h-36 sm:h-40 md:h-48 rounded-t-lg object-cover"
           src={thumbnails.high.url}
           alt="Video Thumbnail"
         />
       )}
-      <div className="flex p-4">
+      <div className="flex p-2 sm:p-3 md:p-4">
         <div className="flex-shrink-0">
-          <div className="w-12 h-12 rounded-full bg-gray-300"></div>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gray-300"></div>
         </div>
-        <div className="ml-4 flex-grow">
-          <h1 className="text-base font-semibold text-gray-900 line-clamp-2">
+        <div className="ml-2 sm:ml-3 md:ml-4 flex-grow">
+          <h1 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 line-clamp-2">
             {title || "No title available"}
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1">
             {channelTitle || "No channel info"}
           </p>
           {viewCount && (
-            <p className="text-sm text-gray-500">
+            <p className="text-xs sm:text-sm md:text-base text-gray-500">
               {formatViews(viewCount)} views
             </p>
           )}
 
           {isVideoLive && (
-            <div className="flex bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full mt-2 w-fit shadow-lg -ml-14">
+            <div className="flex bg-red-600 text-white text-[10px] sm:text-xs md:text-sm font-semibold px-2 sm:px-3 md:px-4 py-1 rounded-full mt-2 w-fit shadow-lg -ml-10 sm:-ml-14">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 mr-2 animate-pulse"
+                className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mr-1 sm:mr-2 md:mr-3 animate-pulse"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
