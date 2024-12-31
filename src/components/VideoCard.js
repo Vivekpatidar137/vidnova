@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { setVideoLive } from "../utils/videoSlice";
+import { useDispatch } from "react-redux";
+
 const VideoCard = ({ info, layout }) => {
   const { snippet, statistics } = info;
   const { channelTitle, thumbnails, title, liveBroadcastContent } =
@@ -13,6 +17,14 @@ const VideoCard = ({ info, layout }) => {
 
   // Check if the video is live based on the broadcast content
   const isVideoLive = liveBroadcastContent === "live";
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentLiveStatus = liveBroadcastContent === "live";
+
+    dispatch(setVideoLive(currentLiveStatus));
+  }, [liveBroadcastContent, dispatch]);
 
   if (layout === "horizontal") {
     return (

@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
 import CommentsList from "./CommentsList";
 import commentsData from "../utils/commentsData";
 import VideoSuggestions from "./VideoSuggestions";
+import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
   const dispatch = useDispatch();
   const videoId = searchParam.get("v");
+  const videoLive = useSelector((state) => state.video.videoLive);
+  console.log("videoLive in store:", videoLive);
 
   useEffect(() => {
     dispatch(closeMenu());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-4">
@@ -36,10 +39,19 @@ const WatchPage = () => {
         </div>
       </div>
 
-      {/* Suggestions Section */}
       <div className="lg:w-[450px] w-full lg:ml-6 mt-6">
-        <h2 className="font-semibold text-xl mb-6">Up Next</h2>
-        <VideoSuggestions videoId={videoId} />
+        {/* Conditional Rendering based on live status */}
+        {videoLive ? (
+          <div>
+            <h2 className="font-semibold text-xl mb-6">Live</h2>
+            <LiveChat />
+          </div>
+        ) : (
+          <div>
+            <h2 className="font-semibold text-xl mb-6">Up Next</h2>
+            <VideoSuggestions videoId={videoId} />
+          </div>
+        )}
       </div>
     </div>
   );
