@@ -78,7 +78,7 @@ const Header = () => {
           />
           <div className="flex items-center space-x-2">
             <img className="w-8 md:w-10" src={youtubeLogo} alt="YouTube Logo" />
-            <p className="text-lg md:text-xl font-semibold">YouTube</p>
+            <p className="text-lg md:text-xl font-semibold">VidNova</p>
           </div>
         </div>
 
