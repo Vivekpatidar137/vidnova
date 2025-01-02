@@ -45,7 +45,11 @@ const VideoContainer = () => {
         >
           {videoData.map((video) => (
             <Link
-              to={"/watch?v=" + (video.id?.videoId || video.id)}
+              to={{
+                pathname: "/watch",
+                search: `?v=${video.id?.videoId || video.id}`,
+              }}
+              state={{ videoInfo: video }} // Pass video data as state
               key={video.id?.videoId || video.id}
               className="min-w-0"
             >

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
 import CommentsList from "./CommentsList";
 import commentsData from "../utils/commentsData";
@@ -9,10 +9,13 @@ import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
+  const location = useLocation();
   const dispatch = useDispatch();
+
   const videoId = searchParam.get("v");
-  const videoLive = useSelector((state) => state.video.videoLive);
-  console.log("videoLive in store:", videoLive);
+  const videoInfo = location.state?.videoInfo;
+
+  const isVideoLive = videoInfo?.snippet?.liveBroadcastContent === "live";
 
   useEffect(() => {
     dispatch(closeMenu());
@@ -39,9 +42,10 @@ const WatchPage = () => {
         </div>
       </div>
 
+      {/* Sidebar Section */}
       <div className="lg:w-[450px] w-full lg:ml-6 mt-6">
         {/* Conditional Rendering based on live status */}
-        {videoLive ? (
+        {isVideoLive ? (
           <div>
             <h2 className="font-semibold text-xl mb-6">Live</h2>
             <LiveChat />
