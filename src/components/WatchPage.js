@@ -42,21 +42,18 @@ const WatchPage = () => {
         </div>
       </div>
 
-      {/* Sidebar Section */}
-      <div className="lg:w-[450px] w-full lg:ml-6 mt-6">
-        {/* Conditional Rendering based on live status */}
-        {isVideoLive ? (
-          <div>
-            <h2 className="font-semibold text-xl mb-6">Live</h2>
-            <LiveChat />
-          </div>
-        ) : (
-          <div>
-            <h2 className="font-semibold text-xl mb-6">Up Next</h2>
-            <VideoSuggestions videoId={videoId} />
-          </div>
-        )}
-      </div>
+      {/* Conditional Rendering based on live status */}
+      {isVideoLive ? (
+        <div className="mr-6">
+          <h2 className="font-semibold text-xl mb-6">Live</h2>
+          <LiveChat />
+        </div>
+      ) : (
+        <div className="lg:w-[450px] w-full lg:ml-6 mt-6">
+          <h2 className="font-semibold text-xl mb-6">Up Next</h2>
+          <VideoSuggestions videoId={videoId} />
+        </div>
+      )}
     </div>
   );
 };
