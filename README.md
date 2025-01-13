@@ -95,3 +95,17 @@ src/
 
 - Inspired by YouTube’s design and functionality.
 - Special thanks to the YouTube Data API for its powerful tools.
+
+---
+
+## 📸 Screenshots
+
+### 💻 Laptop View
+
+![Laptop View - Screenshot 1](docs/VidnovaScreenshot1.png)
+![Laptop View - Screenshot 2](docs/VidnovaScreenshot2.png)
+![Laptop View - Screenshot 3](docs/VidnovaScreenshot3.png)
+![Laptop View - Screenshot 4](docs/VidnovaScreenshot4.png)
+![Laptop View - Screenshot 5](docs/VidnovaScreenshot5.png)
+![Laptop View - Screenshot 6](docs/VidnovaScreenshot6.png)
+![Laptop View - Screenshot 7](docs/VidnovaScreenshot7.png)
