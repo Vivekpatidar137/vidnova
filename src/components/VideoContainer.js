@@ -11,22 +11,55 @@ const VideoContainer = () => {
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
 
   const [videos, setVideos] = useState([]);
-  const getVideos = async () => {
+  const [loading, setLoading] = useState(false);
+  const [nextPageToken, setNextPageToken] = useState(""); // Store nextPageToken
+
+  const fetchVideos = async (pageToken = "") => {
+    setLoading(true);
     try {
-      const response = await fetch(YouTUBE_URL + API_KEY);
-      if (!response.ok) {
-        throw new Error("Failed to fetch videos");
+      const url = new URL(YouTUBE_URL + API_KEY);
+      url.searchParams.set("part", "snippet,contentDetails,statistics");
+      url.searchParams.set("chart", "mostPopular");
+      url.searchParams.set("maxResults", 50);
+      url.searchParams.set("regionCode", "US");
+      if (pageToken) {
+        url.searchParams.set("pageToken", pageToken);
       }
-      const json = await response.json();
-      setVideos(json.items || []);
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setVideos((prevVideos) => [...prevVideos, ...data.items]);
+      setNextPageToken(data.nextPageToken || ""); // Update or clear token
     } catch (error) {
       console.error("Error fetching videos:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    getVideos();
+    fetchVideos(); // Fetch initial videos
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 200 && // Adjust threshold as needed
+        !loading &&
+        nextPageToken
+      ) {
+        fetchVideos(nextPageToken);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, nextPageToken]);
 
   const videoData = searchResults.length > 0 ? searchResults : videos;
 
@@ -49,7 +82,7 @@ const VideoContainer = () => {
                 pathname: "/watch",
                 search: `?v=${video.id?.videoId || video.id}`,
               }}
-              state={{ videoInfo: video }} // Pass video data as state
+              state={{ videoInfo: video }}
               key={video.id?.videoId || video.id}
               className="min-w-0"
             >
