@@ -32,6 +32,7 @@ const VideoContainer = () => {
       }
 
       const data = await response.json();
+      console.log("API Response:", data); // Debug API response
       setVideos((prevVideos) => [...prevVideos, ...data.items]);
       setNextPageToken(data.nextPageToken || ""); // Update or clear token
     } catch (error) {
@@ -62,6 +63,10 @@ const VideoContainer = () => {
   }, [loading, nextPageToken]);
 
   const videoData = searchResults.length > 0 ? searchResults : videos;
+  console.log(
+    "Video IDs:",
+    videoData.map((video) => video.id.videoId)
+  );
 
   return (
     <div className="col-span-11 w-full max-w-screen overflow-hidden">
@@ -80,10 +85,10 @@ const VideoContainer = () => {
             <Link
               to={{
                 pathname: "/watch",
-                search: `?v=${video.id?.videoId || video.id}`,
+                search: `?v=${video.id.videoId}`,
               }}
               state={{ videoInfo: video }}
-              key={video.id?.videoId || video.id}
+              key={video.id.videoId}
               className="min-w-0"
             >
               <VideoCard info={video} />
