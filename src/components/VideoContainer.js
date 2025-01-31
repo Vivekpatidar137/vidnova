@@ -32,7 +32,7 @@ const VideoContainer = () => {
       }
 
       const data = await response.json();
-      console.log("API Response:", data); // Debug API response
+
       setVideos((prevVideos) => [...prevVideos, ...data.items]);
       setNextPageToken(data.nextPageToken || ""); // Update or clear token
     } catch (error) {
@@ -63,10 +63,6 @@ const VideoContainer = () => {
   }, [loading, nextPageToken]);
 
   const videoData = searchResults.length > 0 ? searchResults : videos;
-  console.log(
-    "Video IDs:",
-    videoData.map((video) => video.id.videoId)
-  );
 
   return (
     <div className="col-span-11 w-full max-w-screen overflow-hidden">
@@ -81,19 +77,28 @@ const VideoContainer = () => {
               : "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5"
           }`}
         >
-          {videoData.map((video) => (
-            <Link
-              to={{
-                pathname: "/watch",
-                search: `?v=${video.id.videoId}`,
-              }}
-              state={{ videoInfo: video }}
-              key={video.id.videoId}
-              className="min-w-0"
-            >
-              <VideoCard info={video} />
-            </Link>
-          ))}
+          {videoData.map((video, index) => {
+            const videoId = video.id?.videoId || video.id; // Ensure valid ID
+
+            // Use `index` as a fallback for uniqueness
+            const uniqueKey = videoId
+              ? `${videoId}-${index}`
+              : `fallback-${index}`;
+
+            return (
+              <Link
+                to={{
+                  pathname: "/watch",
+                  search: `?v=${videoId}`,
+                }}
+                state={{ videoInfo: video }}
+                key={uniqueKey}
+                className="min-w-0"
+              >
+                <VideoCard info={video} />
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>
