@@ -3,10 +3,12 @@ import LiveMessage from "./LiveMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../utils/chatSlice";
 import { generateMessage, generateName } from "../utils/helper";
-import { RiSendPlaneFill } from "react-icons/ri";
+import { RiSendPlaneFill, RiEmojiStickerLine } from "react-icons/ri"; // Icons for send and emoji
+import Picker from "emoji-picker-react"; // Emoji picker
 
 const LiveChat = () => {
   const [message, setMessage] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const chatMessages = useSelector((state) => state.chat.messages);
   const dispatch = useDispatch();
 
@@ -25,7 +27,12 @@ const LiveChat = () => {
     if (message.trim()) {
       dispatch(addMessage({ name: "Vivek", message }));
       setMessage("");
+      setShowEmojiPicker(false); // Close emoji picker after sending
     }
+  };
+
+  const handleEmojiClick = (emojiObject) => {
+    setMessage(message + emojiObject.emoji);
   };
 
   return (
@@ -46,22 +53,42 @@ const LiveChat = () => {
             key={index}
             name={message.name}
             message={message.message}
+            timestamp={new Date().toLocaleTimeString()} // Add timestamp
           />
         ))}
       </div>
 
       {/* Input */}
-      <form className="mt-4 flex" onSubmit={handleSubmit}>
+      <form className="mt-4 flex items-center relative" onSubmit={handleSubmit}>
+        {/* Emoji Picker */}
+        {showEmojiPicker && (
+          <div className="absolute bottom-12 left-0 z-10">
+            <Picker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
+
+        {/* Emoji Button */}
+        <button
+          type="button"
+          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+          className="p-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+        >
+          <RiEmojiStickerLine className="w-5 h-5" />
+        </button>
+
+        {/* Input Field */}
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
-          className="w-full bg-gray-100 text-sm text-gray-800 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+          className="w-full bg-gray-100 text-sm text-gray-800 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
         />
+
+        {/* Send Button */}
         <button
           type="submit"
-          className="bg-blue-600 text-white p-3 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 flex items-center justify-center"
+          className="ml-2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
         >
           <RiSendPlaneFill className="w-5 h-5" />
         </button>

@@ -1,4 +1,4 @@
-const LiveMessage = ({ name, message }) => {
+const LiveMessage = ({ name, message, timestamp }) => {
   return (
     <div className="flex items-start space-x-3 animate-fade-in">
       {/* Profile Picture */}
@@ -8,7 +8,10 @@ const LiveMessage = ({ name, message }) => {
 
       {/* Message Content */}
       <div className="flex-1">
-        <div className="text-sm font-semibold text-gray-800">{name}</div>
+        <div className="flex items-center justify-between">
+          <div className="text-sm font-semibold text-gray-800">{name}</div>
+          <div className="text-xs text-gray-500">{timestamp}</div>
+        </div>
         <div className="text-sm text-gray-600 mt-1 bg-gray-100 p-2 rounded-lg shadow-sm">
           {message}
         </div>
