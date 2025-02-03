@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { HiX } from "react-icons/hi";
 import hamburgerMenu from "../assets/menu.png";
 import youtubeLogo from "../assets/youtube.png";
 import userIcon from "../assets/user.png";
@@ -62,7 +64,7 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 flex items-center justify-between bg-white shadow-md px-4 py-2 md:px-6">
+    <div className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-2 md:px-6">
       <div className="flex items-center justify-between w-full">
         {/* Hamburger Menu and Logo */}
         <div
@@ -82,116 +84,101 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex-grow mx-4 max-w-lg">
-          {/* Always show search input on md and larger screens */}
+        {/* Search Bar */}
+        <div className="flex-grow mx-4 max-w-2xl">
+          {/* Desktop Search */}
           {showSearchInput || (
-            <form
-              className="hidden md:flex items-center flex-grow"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                type="text"
-                placeholder="Search"
-                onFocus={() => setShowSuggestions(true)}
-                onBlur={() => setShowSuggestions(false)}
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-              />
+            <form className="hidden md:flex items-center">
+              <div className="flex-grow relative">
+                <input
+                  className="w-full border border-gray-300 rounded-l-full px-4 py-2 h-10 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  type="text"
+                  placeholder="Search"
+                  onFocus={() => setShowSuggestions(true)}
+                  onBlur={() => setShowSuggestions(false)}
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                  }}
+                />
+                {/* Search Suggestions */}
+                {searchSuggestions.length > 0 && showSuggestions && (
+                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 px-4 py-2">
+                    {searchSuggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      >
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
               <button
-                className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
+                className="bg-gray-100 border border-gray-300 rounded-r-full px-5 h-10 hover:bg-gray-200 flex items-center justify-center"
                 type="submit"
                 onClick={() => handleSearch()}
               >
-                Search
+                <FaSearch className="text-gray-600 w-5 h-5" />
               </button>
             </form>
           )}
-          {/* For small screens, toggle search bar */}
+
+          {/* Mobile Search */}
           {!showSearchInput ? (
             <button
               onClick={toggleSearchView}
-              className="sm:hidden p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+              className="sm:hidden p-2 rounded-full hover:bg-gray-200 focus:outline-none h-10 w-10 flex items-center justify-center"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M11 17a6 6 0 100-12 6 6 0 000 12zM21 21l-4.35-4.35"
-                />
-              </svg>
+              <FaSearch className="text-gray-600 w-6 h-6" />
             </button>
           ) : (
-            <form
-              className="flex items-center flex-grow"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                type="text"
-                placeholder="Search"
-                onFocus={() => setShowSuggestions(true)}
-                onBlur={() => setShowSuggestions(false)}
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-              />
+            <form className="flex items-center w-full">
+              <div className="flex-grow relative">
+                <input
+                  className="w-full border border-gray-300 rounded-l-full px-4 py-2 h-10 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  type="text"
+                  placeholder="Search"
+                  onFocus={() => setShowSuggestions(true)}
+                  onBlur={() => setShowSuggestions(false)}
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                  }}
+                />
+                {/* Search Suggestions */}
+                {searchSuggestions.length > 0 && showSuggestions && (
+                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 px-4 py-2">
+                    {searchSuggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      >
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
               <button
-                className="bg-gray-100 border border-gray-300 rounded-r-full px-4 py-2 hover:bg-gray-200"
+                className="bg-gray-100 border border-gray-300 rounded-r-full px-5 h-10 hover:bg-gray-200 flex items-center justify-center"
                 type="submit"
                 onClick={() => handleSearch()}
               >
-                Search
+                <FaSearch className="text-gray-600 w-5 h-5" />
               </button>
               <button
                 onClick={toggleSearchView}
-                className="ml-2 p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                className="ml-2 p-2 rounded-full hover:bg-gray-200 focus:outline-none h-10 w-10 flex items-center justify-center"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-gray-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <HiX className="text-gray-600 w-6 h-6" />
               </button>
             </form>
           )}
-
-          {/* Search Suggestions */}
-          <div className="relative w-full max-w-lg mx-auto pt-1">
-            {searchSuggestions.length > 0 && showSuggestions && (
-              <ul className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 w-full px-4 py-2">
-                {searchSuggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
         </div>
 
+        {/* User Icon */}
         {!showSearchInput && (
           <img
             className="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer"
@@ -200,6 +187,8 @@ const Header = () => {
           />
         )}
       </div>
+
+      {/* Search Results */}
       {showSearch && (
         <SearchFetcher
           searchQuery={searchQuery}
