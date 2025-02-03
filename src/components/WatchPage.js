@@ -17,7 +17,9 @@ const WatchPage = () => {
 
   const isVideoLive = videoInfo?.snippet?.liveBroadcastContent === "live";
 
+  // Reset scroll position to top when the component mounts
   useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top of the page
     dispatch(closeMenu());
   }, [dispatch]);
 
