@@ -47,7 +47,7 @@ const ButtonList = () => {
   };
 
   return (
-    <div className="relative bg-white shadow-md">
+    <div className="relative bg-white">
       {/* Left Arrow */}
       <button
         onClick={scrollLeft}
