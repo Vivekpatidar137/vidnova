@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import { HiX } from "react-icons/hi";
 import hamburgerMenu from "../assets/menu.png";
@@ -18,19 +18,15 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const searchCache = useSelector((store) => store.search);
+  const inputRef = useRef(null);
 
   const getSearchSuggestions = async () => {
     try {
       if (!searchQuery) return;
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const json = await data.json();
-
       setSearchSuggestions(json[1] || []);
-      dispatch(
-        addSuggestions({
-          [searchQuery]: json[1] || [],
-        })
-      );
+      dispatch(addSuggestions({ [searchQuery]: json[1] || [] }));
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
@@ -53,6 +49,7 @@ const Header = () => {
 
   const handleSearchComplete = () => {
     setSearchQuery("");
+    setShowSearch(false);
   };
 
   const toggleMenuHandler = () => {
@@ -61,6 +58,13 @@ const Header = () => {
 
   const toggleSearchView = () => {
     setShowSearchInput(!showSearchInput);
+    setSearchSuggestions([]); // Clear suggestions
+    setShowSuggestions(false); // Hide dropdown
+    if (!showSearchInput) {
+      setTimeout(() => {
+        inputRef.current?.focus(); // Auto-focus input
+      }, 0);
+    }
   };
 
   return (
@@ -87,8 +91,14 @@ const Header = () => {
         {/* Search Bar */}
         <div className="flex-grow mx-4 max-w-2xl">
           {/* Desktop Search */}
-          {showSearchInput || (
-            <form className="hidden md:flex items-center">
+          {!showSearchInput && (
+            <form
+              className="hidden md:flex items-center"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch();
+              }}
+            >
               <div className="flex-grow relative">
                 <input
                   className="w-full border border-gray-300 rounded-l-full px-4 py-2 h-10 focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -97,9 +107,7 @@ const Header = () => {
                   onFocus={() => setShowSuggestions(true)}
                   onBlur={() => setShowSuggestions(false)}
                   value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                  }}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 {/* Search Suggestions */}
                 {searchSuggestions.length > 0 && showSuggestions && (
@@ -118,7 +126,6 @@ const Header = () => {
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-5 h-10 hover:bg-gray-200 flex items-center justify-center"
                 type="submit"
-                onClick={() => handleSearch()}
               >
                 <FaSearch className="text-gray-600 w-5 h-5" />
               </button>
@@ -134,18 +141,23 @@ const Header = () => {
               <FaSearch className="text-gray-600 w-6 h-6" />
             </button>
           ) : (
-            <form className="flex items-center w-full">
+            <form
+              className="flex items-center w-full"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch();
+              }}
+            >
               <div className="flex-grow relative">
                 <input
+                  ref={inputRef}
                   className="w-full border border-gray-300 rounded-l-full px-4 py-2 h-10 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   type="text"
                   placeholder="Search"
                   onFocus={() => setShowSuggestions(true)}
                   onBlur={() => setShowSuggestions(false)}
                   value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                  }}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 {/* Search Suggestions */}
                 {searchSuggestions.length > 0 && showSuggestions && (
@@ -164,7 +176,6 @@ const Header = () => {
               <button
                 className="bg-gray-100 border border-gray-300 rounded-r-full px-5 h-10 hover:bg-gray-200 flex items-center justify-center"
                 type="submit"
-                onClick={() => handleSearch()}
               >
                 <FaSearch className="text-gray-600 w-5 h-5" />
               </button>
