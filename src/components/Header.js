@@ -44,7 +44,10 @@ const Header = () => {
   }, [searchQuery]);
 
   const handleSearch = () => {
-    if (searchQuery.trim()) setShowSearch(true);
+    if (searchQuery.trim()) {
+      setShowSearch(true); // Show search results
+      setShowSuggestions(false); // Hide suggestions dropdown
+    }
   };
 
   const handleSearchComplete = () => {
@@ -105,7 +108,9 @@ const Header = () => {
                   type="text"
                   placeholder="Search"
                   onFocus={() => setShowSuggestions(true)}
-                  onBlur={() => setShowSuggestions(false)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 200)
+                  } // Delay to allow click on suggestions
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -116,6 +121,10 @@ const Header = () => {
                       <li
                         key={index}
                         className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setSearchQuery(suggestion); // Set the suggestion as the search query
+                          handleSearch(); // Trigger the search
+                        }}
                       >
                         {suggestion}
                       </li>
@@ -155,7 +164,9 @@ const Header = () => {
                   type="text"
                   placeholder="Search"
                   onFocus={() => setShowSuggestions(true)}
-                  onBlur={() => setShowSuggestions(false)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 200)
+                  } // Delay to allow click on suggestions
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -166,6 +177,10 @@ const Header = () => {
                       <li
                         key={index}
                         className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setSearchQuery(suggestion); // Set the suggestion as the search query
+                          handleSearch(); // Trigger the search
+                        }}
                       >
                         {suggestion}
                       </li>
