@@ -1,4 +1,3 @@
-
 import { useSelector } from "react-redux";
 import {
   FaHome,
@@ -10,14 +9,24 @@ import {
   FaUserAlt,
 } from "react-icons/fa";
 import { GiSpaceShuttle } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SideBar = () => {
   const toggleMenu = useSelector((store) => store.app.isMenuOpen);
+  const location = useLocation(); // Get the current route
+
+  // Check if the current route is the WatchPage
+  const isWatchPage = location.pathname.startsWith("/watch");
 
   return (
     toggleMenu && (
-      <div className="hidden md:block z-10 col-span-1 bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto border border-gray-200 sticky top-14">
+      <div
+        className={`${
+          isWatchPage
+            ? "fixed z-50" // WatchPage overlay
+            : "sticky hidden md:block" // Sticky on main page
+        } bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto border border-gray-200 top-14 left-0`}
+      >
         <div>
           {/* User Profile Section */}
           <div className="flex items-center space-x-4 p-3 mb-4 bg-gray-100 rounded-md">

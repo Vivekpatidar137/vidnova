@@ -24,7 +24,7 @@ const WatchPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 p-4">
+    <div className="flex flex-col lg:flex-row gap-6 p-4 relative">
       {/* Video Section */}
       <div className="flex-1">
         <div className="max-w-screen-lg mx-auto">
