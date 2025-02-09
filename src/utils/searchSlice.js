@@ -15,9 +15,16 @@ const searchSlice = createSlice({
     addButtonValue: (state, action) => {
       state.searchResults = action.payload || [];
     },
+    clearSearchResults: (state) => {
+      state.searchResults = []; // Clear the search results
+    },
   },
 });
 
-export const { addSuggestions, addSearchList, addButtonValue } =
-  searchSlice.actions;
+export const {
+  addSuggestions,
+  addSearchList,
+  addButtonValue,
+  clearSearchResults,
+} = searchSlice.actions;
 export default searchSlice.reducer;

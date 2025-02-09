@@ -10,11 +10,13 @@ import {
 } from "react-icons/fa";
 import { GiSpaceShuttle } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearSearchResults } from "../utils/searchSlice";
 
 const SideBar = () => {
   const toggleMenu = useSelector((store) => store.app.isMenuOpen);
   const location = useLocation(); // Get the current route
-
+  const dispatch = useDispatch();
   // Check if the current route is the WatchPage
   const isWatchPage = location.pathname.startsWith("/watch");
 
@@ -41,7 +43,12 @@ const SideBar = () => {
 
           {/* Home Section */}
           <ul className="mb-4 space-y-2">
-            <Link to={"/"}>
+            <Link
+              to="/"
+              onClick={() => {
+                dispatch(clearSearchResults()); // Clear search results
+              }}
+            >
               <li className="flex items-center space-x-2 hover:text-red-500 cursor-pointer">
                 <FaHome className="text-gray-500" />
                 <span>Home</span>
