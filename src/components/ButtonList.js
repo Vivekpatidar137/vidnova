@@ -47,32 +47,34 @@ const ButtonList = () => {
   };
 
   return (
-    <div className="relative bg-white">
-      {/* Left Arrow */}
-      <button
-        onClick={scrollLeft}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow z-10 hover:bg-gray-200"
-      >
-        <FaChevronLeft />
-      </button>
+    <div className="fixed top-14 z-50 bg-white shadow-sm w-full px-4 lg:left-[250px] lg:w-[calc(100%-250px)]">
+      <div className="relative w-full">
+        {/* Scrollable Container */}
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-hide whitespace-nowrap py-2"
+        >
+          {buttonNames.map((button, index) => (
+            <Buttons key={index} name={button} />
+          ))}
+        </div>
 
-      {/* Scrollable Container */}
-      <div
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto scrollbar-hide whitespace-nowrap px-4 py-2 max-w-full"
-      >
-        {buttonNames.map((button, index) => (
-          <Buttons key={index} name={button} />
-        ))}
+        {/* Left Arrow */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+        >
+          <FaChevronLeft />
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+        >
+          <FaChevronRight />
+        </button>
       </div>
-
-      {/* Right Arrow */}
-      <button
-        onClick={scrollRight}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow z-10 hover:bg-gray-200"
-      >
-        <FaChevronRight />
-      </button>
     </div>
   );
 };

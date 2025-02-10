@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { API_KEY, YouTUBE_URL } from "../utils/constant";
-import ButtonList from "./ButtonList";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { useSelector } from "react-redux";
@@ -65,8 +64,7 @@ const VideoContainer = () => {
   const videoData = searchResults.length > 0 ? searchResults : videos;
 
   return (
-    <div className="col-span-11 w-full max-w-screen overflow-hidden">
-      <ButtonList />
+    <div className="col-span-11 w-full max-w-screen overflow-hidden mt-16">
       {!videoData.length ? (
         <Shimmer />
       ) : (
