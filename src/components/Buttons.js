@@ -5,6 +5,7 @@ import { addButtonValue } from "../utils/searchSlice";
 
 const Buttons = ({ name }) => {
   const dispatch = useDispatch();
+
   const getByButtonValue = async () => {
     try {
       const response = await fetch(SEARCH_LIST + name + "&key=" + API_KEY);
@@ -17,7 +18,9 @@ const Buttons = ({ name }) => {
 
   return (
     <button
-      className="bg-slate-100 px-3 p-1 m-2 rounded-full hover:bg-slate-200 active:bg-slate-300 transition-all"
+      className="bg-gray-100 text-black text-[15px] font-medium px-5 py-2 
+                 rounded-lg m-2 hover:bg-gray-200 active:bg-gray-300 
+                 transition-all whitespace-nowrap"
       onClick={getByButtonValue}
     >
       {name}

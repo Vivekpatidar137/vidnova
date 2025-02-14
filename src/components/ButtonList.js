@@ -36,43 +36,45 @@ const ButtonList = () => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      scrollContainerRef.current.scrollBy({ left: -400, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      scrollContainerRef.current.scrollBy({ left: 400, behavior: "smooth" });
     }
   };
 
   return (
     <div className="fixed top-14 z-50 bg-white shadow-sm w-full px-4 lg:left-[250px] lg:w-[calc(100%-250px)]">
-      <div className="relative w-full">
-        {/* Scrollable Container */}
+      <div className="relative w-full flex items-center">
+        {/* Left Scroll Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 z-10 bg-white p-3 rounded-full shadow-md 
+                     hover:bg-gray-200 hidden md:flex"
+        >
+          <FaChevronLeft size={18} />
+        </button>
+
+        {/* Scrollable Buttons */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto scrollbar-hide whitespace-nowrap py-2"
+          className="flex overflow-x-auto scrollbar-hide whitespace-nowrap py-3 px-8"
         >
           {buttonNames.map((button, index) => (
             <Buttons key={index} name={button} />
           ))}
         </div>
 
-        {/* Left Arrow */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
-        >
-          <FaChevronLeft />
-        </button>
-
-        {/* Right Arrow */}
+        {/* Right Scroll Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+          className="absolute right-0 z-10 bg-white p-3 rounded-full shadow-md 
+                     hover:bg-gray-200 hidden md:flex"
         >
-          <FaChevronRight />
+          <FaChevronRight size={18} />
         </button>
       </div>
     </div>
