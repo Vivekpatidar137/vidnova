@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Buttons from "./Buttons";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ButtonList = () => {
   const buttonNames = [
@@ -33,6 +34,7 @@ const ButtonList = () => {
   ];
 
   const scrollContainerRef = useRef(null);
+  const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -47,7 +49,13 @@ const ButtonList = () => {
   };
 
   return (
-    <div className="fixed top-14 z-50 bg-white shadow-sm w-full px-4 lg:left-[250px] lg:w-[calc(100%-250px)]">
+    <div
+      className={`fixed top-14 z-50 bg-white shadow-sm w-full px-4 ${
+        isMenuOpen
+          ? "lg:left-[250px] lg:w-[calc(100%-250px)]"
+          : "lg:left-0 lg:w-full"
+      }`}
+    >
       <div className="relative w-full flex items-center">
         {/* Left Scroll Button */}
         <button
