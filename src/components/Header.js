@@ -114,9 +114,9 @@ const Header = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {/* Search Suggestions */}
+                {/* Search Suggestions - Increased z-index */}
                 {searchSuggestions.length > 0 && showSuggestions && (
-                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 px-4 py-2">
+                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-60 px-4 py-2">
                     {searchSuggestions.map((suggestion, index) => (
                       <li
                         key={index}
@@ -170,9 +170,9 @@ const Header = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {/* Search Suggestions */}
+                {/* Search Suggestions - Increased z-index */}
                 {searchSuggestions.length > 0 && showSuggestions && (
-                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-50 px-4 py-2">
+                  <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 shadow-lg rounded-md z-60 px-4 py-2">
                     {searchSuggestions.map((suggestion, index) => (
                       <li
                         key={index}

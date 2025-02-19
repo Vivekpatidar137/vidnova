@@ -50,7 +50,7 @@ const ButtonList = () => {
 
   return (
     <div
-      className={`fixed top-14 z-50 bg-white shadow-sm w-full px-4 ${
+      className={`fixed top-14 z-40 bg-white shadow-sm w-full px-4 ${
         isMenuOpen
           ? "lg:left-[250px] lg:w-[calc(100%-250px)]"
           : "lg:left-0 lg:w-full"
