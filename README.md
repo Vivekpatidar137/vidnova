@@ -102,10 +102,40 @@ src/
 
 ### 💻 Laptop View
 
-![Laptop View - Screenshot 1](docs/VidnovaScreenshot1.png)
-![Laptop View - Screenshot 2](docs/VidnovaScreenshot2.png)
-![Laptop View - Screenshot 3](docs/VidnovaScreenshot3.png)
-![Laptop View - Screenshot 4](docs/VidnovaScreenshot4.png)
-![Laptop View - Screenshot 5](docs/VidnovaScreenshot5.png)
-![Laptop View - Screenshot 6](docs/VidnovaScreenshot6.png)
-![Laptop View - Screenshot 7](docs/VidnovaScreenshot7.png)
+### 🎥 Home Page - Video Grid
+
+Displays trending and recommended videos in a dynamic grid format.
+
+![VidNova Home Page - Screenshot 1](docs/HomePage-Screenshot1.png)
+![VidNova Home Page - Screenshot 2](docs/HomePage-Screenshot2.png)
+
+### ▶️ Video Playback - Watch Page
+
+Embedded YouTube player with related videos.
+
+![VidNova Watch Page - Screenshot-1 ](docs/WatchPage-Screenshot-1.png)
+![VidNova Watch Page - Screenshot-2 ](docs/WatchPage-Screenshot-2.png)
+
+### 💬 Nested Comments Section
+
+Displays a hierarchical structure of comments (Reddit-style).
+
+![VidNova Nested Comments Section - Screenshot ](docs/Nested-Comments-Screenshot.png)
+
+### 🔍 Search Suggestions
+
+Displays real-time search suggestions as the user types in the search bar.
+
+![VidNova Search Suggestions - Screenshot ](docs/Search-Suggestions-Screenshot.png)
+
+### 🔴 Live Video Cards
+
+Highlights currently live streaming videos with a LIVE indicator badge.
+
+![VidNova Live Video Cards - Screenshot ](docs/LiveVideo-Cards-Screenshot.png)
+
+### 🗨️ Live Chat Section
+
+Chat messages updating during a live stream.
+
+![VidNova Live Chat Section - Screenshot ](docs/LiveChat-Section-Screenshot.png)
