@@ -139,3 +139,15 @@ Highlights currently live streaming videos with a LIVE indicator badge.
 Chat messages updating during a live stream.
 
 ![VidNova Live Chat Section - Screenshot ](docs/LiveChat-Section-Screenshot.png)
+
+### 📱 Mobile View
+
+Fully responsive layout optimized for mobile screens.
+
+![Mobile View - Screenshot 1](docs/MobileView-Screenshot1.png)
+![Mobile View - Screenshot 2](docs/MobileView-Screenshot2.png)
+![Mobile View - Screenshot 3](docs/MobileView-Screenshot3.png)
+![Mobile View - Screenshot 4](docs/MobileView-Screenshot4.png)
+![Mobile View - Screenshot 5](docs/MobileView-Screenshot5.png)
+![Mobile View - Screenshot 6](docs/MobileView-Screenshot6.png)
+![Mobile View - Screenshot 7](docs/MobileView-Screenshot7.png)
