@@ -27,7 +27,7 @@ const SideBar = () => {
           isWatchPage
             ? "fixed z-50" // WatchPage overlay
             : "sticky hidden md:block" // Sticky on main page
-        } bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto border border-gray-200 top-14 left-0`}
+        } bg-white shadow-lg rounded-lg p-4 w-64 h-screen overflow-y-auto top-14 left-0`}
       >
         <div>
           {/* User Profile Section */}
