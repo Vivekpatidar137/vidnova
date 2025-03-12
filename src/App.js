@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
+import ThemeProvider from "./components/ThemeProvider"; // New component
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -23,11 +24,14 @@ function App() {
       ],
     },
   ]);
+
   return (
     <div className="App">
       <Provider store={store}>
-        <Header />
-        <RouterProvider router={appRouter} />
+        <ThemeProvider>
+          <Header />
+          <RouterProvider router={appRouter} />
+        </ThemeProvider>
       </Provider>
     </div>
   );
