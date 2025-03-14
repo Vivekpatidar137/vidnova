@@ -64,7 +64,7 @@ const VideoContainer = () => {
   const videoData = searchResults.length > 0 ? searchResults : videos;
 
   return (
-    <div className="col-span-11 w-full max-w-screen overflow-hidden mt-16">
+    <div className="col-span-11 w-full max-w-screen overflow-hidden mt-20">
       {!videoData.length ? (
         <Shimmer />
       ) : (
