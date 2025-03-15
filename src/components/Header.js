@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaSearch, FaBars, FaUser } from "react-icons/fa"; // Import FaUser
 import { HiX } from "react-icons/hi";
 import { BsSun, BsMoon } from "react-icons/bs";
 import youtubeLogo from "../assets/youtube.png";
-import userIcon from "../assets/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu, toggleTheme } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
@@ -219,11 +218,7 @@ const Header = () => {
                 <BsSun className="text-yellow-400 w-6 h-6" />
               )}
             </button>
-            <img
-              className="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer"
-              src={userIcon}
-              alt="User Icon"
-            />
+            <FaUser className="w-8 h-8 md:w-10 md:h-10 text-gray-600 dark:text-gray-300 cursor-pointer" />
           </div>
         )}
       </div>
