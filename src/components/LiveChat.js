@@ -36,18 +36,20 @@ const LiveChat = () => {
   };
 
   return (
-    <div className="lg:w-[450px] w-full lg:ml-6 mt-6 bg-white rounded-xl shadow-2xl flex flex-col h-[500px] p-4 border border-gray-200">
+    <div className="lg:w-[450px] w-full lg:ml-6 mt-6 bg-white dark:bg-gray-900 rounded-xl shadow-2xl flex flex-col h-[500px] p-4 border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-800">Live Chat</h3>
-        <span className="flex items-center text-sm text-gray-500">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+          Live Chat
+        </h3>
+        <span className="flex items-center text-sm text-gray-500 dark:text-gray-400">
           <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
           Live
         </span>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto space-y-3 bg-gray-50 rounded-lg p-3 flex flex-col-reverse">
+      <div className="flex-1 overflow-y-auto space-y-3 bg-gray-50 dark:bg-gray-800 rounded-lg p-3 flex flex-col-reverse">
         {chatMessages.map((message, index) => (
           <LiveMessage
             key={index}
@@ -71,7 +73,7 @@ const LiveChat = () => {
         <button
           type="button"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-          className="p-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none"
         >
           <RiEmojiStickerLine className="w-5 h-5" />
         </button>
@@ -82,7 +84,7 @@ const LiveChat = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
-          className="w-full bg-gray-100 text-sm text-gray-800 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+          className="w-full bg-gray-100 dark:bg-gray-800 text-sm text-gray-800 dark:text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
         />
 
         {/* Send Button */}
