@@ -24,7 +24,7 @@ const WatchPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 p-4 relative">
+    <div className="flex flex-col lg:flex-row gap-6 p-4 relative bg-white dark:bg-gray-900">
       {/* Video Section */}
       <div className="flex-1">
         <div className="max-w-screen-lg mx-auto">
@@ -39,7 +39,9 @@ const WatchPage = () => {
           ></iframe>
         </div>
         <div className="mt-6 max-w-screen-lg mx-auto">
-          <h2 className="font-semibold text-xl sm:text-2xl mb-4">Comments:</h2>
+          <h2 className="font-semibold text-xl sm:text-2xl mb-4 text-gray-800 dark:text-white">
+            Comments:
+          </h2>
           <CommentsList comments={commentsData} />
         </div>
       </div>
@@ -47,12 +49,16 @@ const WatchPage = () => {
       {/* Conditional Rendering based on live status */}
       {isVideoLive ? (
         <div className="mr-6">
-          <h2 className="font-semibold text-xl mb-6">Live</h2>
+          <h2 className="font-semibold text-xl mb-6 text-gray-800 dark:text-white">
+            Live
+          </h2>
           <LiveChat />
         </div>
       ) : (
         <div className="lg:w-[450px] w-full lg:ml-6 mt-6">
-          <h2 className="font-semibold text-xl mb-6">Up Next</h2>
+          <h2 className="font-semibold text-xl mb-6 text-gray-800 dark:text-white">
+            Up Next
+          </h2>
           <VideoSuggestions videoId={videoId} />
         </div>
       )}
