@@ -50,23 +50,19 @@ const ButtonList = () => {
 
   return (
     <div
-      className={`fixed top-14 z-40 bg-white shadow-sm w-full px-4 ${
+      className={`fixed top-14 z-40 bg-white dark:bg-gray-900 shadow-sm w-full px-4 ${
         isMenuOpen
           ? "lg:left-[250px] lg:w-[calc(100%-250px)]"
           : "lg:left-0 lg:w-full"
       }`}
     >
       <div className="relative w-full flex items-center">
-        {/* Left Scroll Button */}
         <button
           onClick={scrollLeft}
-          className="absolute left-0 z-10 bg-white p-3 rounded-full shadow-md 
-                     hover:bg-gray-200 hidden md:flex"
+          className="absolute left-0 z-10 bg-white dark:bg-gray-900 p-3 rounded-full shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 hidden md:flex text-gray-600 dark:text-gray-300"
         >
           <FaChevronLeft size={18} />
         </button>
-
-        {/* Scrollable Buttons */}
         <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto scrollbar-hide whitespace-nowrap py-3 px-8"
@@ -75,12 +71,9 @@ const ButtonList = () => {
             <Buttons key={index} name={button} />
           ))}
         </div>
-
-        {/* Right Scroll Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-0 z-10 bg-white p-3 rounded-full shadow-md 
-                     hover:bg-gray-200 hidden md:flex"
+          className="absolute right-0 z-10 bg-white dark:bg-gray-900 p-3 rounded-full shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 hidden md:flex text-gray-600 dark:text-gray-300"
         >
           <FaChevronRight size={18} />
         </button>
