@@ -18,9 +18,7 @@ const Buttons = ({ name }) => {
 
   return (
     <button
-      className="bg-gray-100 text-black text-[15px] font-medium px-5 py-2 
-                 rounded-lg m-2 hover:bg-gray-200 active:bg-gray-300 
-                 transition-all whitespace-nowrap"
+      className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white text-[15px] font-medium px-5 py-2 rounded-lg m-2 hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-300 dark:active:bg-gray-600 transition-all whitespace-nowrap"
       onClick={getByButtonValue}
     >
       {name}
