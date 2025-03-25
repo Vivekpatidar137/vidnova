@@ -6,6 +6,7 @@ import CommentsList from "./CommentsList";
 import commentsData from "../utils/commentsData";
 import VideoSuggestions from "./VideoSuggestions";
 import LiveChat from "./LiveChat";
+import VideoInteractionControls from "./VideoInteractionControls";
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
@@ -37,6 +38,8 @@ const WatchPage = () => {
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
+          {/* Video Interaction Controls */}
+          <VideoInteractionControls videoId={videoId} />
         </div>
         <div className="mt-6 max-w-screen-lg mx-auto">
           <h2 className="font-semibold text-xl sm:text-2xl mb-4 text-gray-800 dark:text-white">
