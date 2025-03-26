@@ -34,6 +34,11 @@ VidNova is a modern, YouTube-like video streaming application that utilizes the 
 - **Intuitive Interface**: Inspired by YouTube’s design with cool aesthetics.
 - **User-Friendly Navigation**: Simplifies video discovery and playback.
 
+### 🌙 Dark/Light Mode
+
+- **Theme Toggle**: Switch between dark and light modes with a button.
+- **Responsive Design**: Looks great in both themes on all devices.
+
 ---
 
 ## 🛠️ Tech Stack
