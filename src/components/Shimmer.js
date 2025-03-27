@@ -1,7 +1,9 @@
-const Shimmer = () => {
+import React from "react";
+
+const Shimmer = ({ count = 8 }) => {
   return (
-    <div className="flex flex-wrap bg-white dark:bg-gray-900">
-      {Array(8)
+    <div className="flex flex-wrap bg-white dark:bg-gray-900 mt-16">
+      {Array(count)
         .fill("")
         .map((_, index) => (
           <div
