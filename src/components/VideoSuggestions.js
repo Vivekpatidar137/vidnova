@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { VIDEO_SUGGESTIONS, API_KEY } from "../utils/constant";
+import { Link } from "react-router-dom";
 
 const VideoSuggestions = ({ videoId }) => {
   const [suggestions, setSuggestions] = useState([]);
@@ -29,7 +30,17 @@ const VideoSuggestions = ({ videoId }) => {
   return (
     <div className="flex flex-col gap-4">
       {suggestions.map((video) => (
-        <VideoCard key={video.id.videoId} info={video} layout="horizontal" />
+        <Link
+          key={video.id.videoId}
+          to={{
+            pathname: "/watch",
+            search: `?v=${video.id.videoId}`,
+            state: { videoInfo: video },
+          }}
+          className="hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+        >
+          <VideoCard info={video} layout="horizontal" />
+        </Link>
       ))}
     </div>
   );
